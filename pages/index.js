@@ -1,6 +1,29 @@
 import Head from "next/head";
 import Link from "next/link";
 
+const sahteYorumlar = [
+  {
+    isim: "Ahmet K.",
+    yorum: "Hizmetten çok memnun kaldım, hızlı ve ilgili bir ekip!",
+  },
+  {
+    isim: "Elif D.",
+    yorum: "Buzdolabım bir günde tamir edildi, çok teşekkürler!",
+  },
+  {
+    isim: "Murat Y.",
+    yorum: "Fiyatlar uygun ve çalışanlar kibar. Tavsiye ederim.",
+  },
+  {
+    isim: "Seda B.",
+    yorum: "Klima bakımı için geldiler, işlerini iyi biliyorlar.",
+  },
+  {
+    isim: "Deniz C.",
+    yorum: "Kombi tamirinde titiz çalıştılar, tekrar arayacağım.",
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -119,6 +142,43 @@ export default function Home() {
               Memnuniyeti
             </li>
           </ul>
+        </div>
+        <div className="my-5">
+          <h2 className="h5 fw-bold text-center mb-4">Müşteri Yorumları</h2>
+          <div className="mx-auto" style={{ maxWidth: 600 }}>
+            {sahteYorumlar.map((y, i) => (
+              <div
+                key={i}
+                className="mb-3 p-3 border rounded shadow-sm bg-white d-flex align-items-center"
+                style={{
+                  borderLeft: "5px solid #0d6efd",
+                  minHeight: 70,
+                }}
+              >
+                {/* Avatar İkonu */}
+                <div
+                  className="d-flex justify-content-center align-items-center me-3"
+                  style={{
+                    width: 46,
+                    height: 46,
+                    borderRadius: "50%",
+                    background: "#e9ecef",
+                  }}
+                >
+                  <i
+                    className="bi bi-person-circle text-secondary"
+                    style={{ fontSize: 30 }}
+                  ></i>
+                </div>
+                <div>
+                  <div className="mb-1 text-secondary small">{y.isim}</div>
+                  <div className="fw-semibold" style={{ fontSize: 17 }}>
+                    "{y.yorum}"
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>

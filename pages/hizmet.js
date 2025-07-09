@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
+import ortakMakale from "../lib/makale";
 
+// Hizmetler listesi (ikonları Bootstrap Icons ile)
 const hizmetler = [
   {
     name: "Beyaz Eşya Servisi",
@@ -49,7 +51,7 @@ export default function Hizmet() {
   const router = useRouter();
   const { service } = router.query;
 
-  // Query yoksa kartlar göster (Tüm hizmetler)
+  // Eğer service parametresi yoksa: Kartlı ana hizmetler listesi
   if (!service) {
     return (
       <>
@@ -116,10 +118,8 @@ export default function Hizmet() {
     );
   }
 
-  // Query varsa: Dinamik hizmet detay
-  const hizmetAdi = service
-    ? decodeURIComponent(service)
-    : "Beyaz Eşya Servisi";
+  // Eğer service parametresi varsa: O hizmetin detay sayfası (ikonlu, makaleli)
+  const hizmetAdi = service ? decodeURIComponent(service) : "";
   const hizmetData = hizmetler.find((h) => h.name === hizmetAdi);
 
   return (
@@ -132,16 +132,18 @@ export default function Hizmet() {
         />
       </Head>
       <div className="container py-5">
-        <h1 className="mb-4">{hizmetAdi}</h1>
-        <div
-          className="d-flex justify-content-center align-items-center mb-4"
-          style={{ height: 110 }}
-        >
+        {/* Başlık ve ikon yan yana */}
+        <div className="d-flex align-items-center justify-content-between flex-wrap">
+          <h1 className="mb-3" style={{ fontSize: 54, fontWeight: 700 }}>
+            {hizmetAdi}
+          </h1>
           <i
             className={`bi ${hizmetData?.icon || "bi-tools"} text-primary`}
-            style={{ fontSize: 64 }}
+            style={{ fontSize: 68, marginRight: 8 }}
           ></i>
         </div>
+
+        {/* Uyarı */}
         <div className="alert alert-danger fw-bold mb-4">
           Dikkat: Bu site{" "}
           <span className="text-decoration-underline">
@@ -149,13 +151,21 @@ export default function Hizmet() {
           </span>
           . Sadece garantisi olmayan cihazlar için hizmet sunulmaktadır.
         </div>
-        <p>
-          {hizmetData ? hizmetData.desc : ""} alanında uzman ekibimiz ile
-          cihazınızın arıza, bakım ve tamir işlemlerini hızlı ve güvenilir bir
-          şekilde gerçekleştiriyoruz. Uygun fiyat avantajı ile aynı gün servis
-          imkanı!
+
+        {/* Kısa açıklama */}
+        <p style={{ fontSize: 20 }}>
+          {hizmetData ? hizmetData.desc : ""}
+          {hizmetData &&
+            " alanında uzman ekibimiz ile cihazınızın arıza, bakım ve tamir işlemlerini hızlı ve güvenilir bir şekilde gerçekleştiriyoruz. Uygun fiyat avantajı ile aynı gün servis imkanı!"}
         </p>
-        <Link href="/hizmet" className="btn btn-outline-secondary mt-3">
+
+        {/* Ortak Makale */}
+        <div className="mt-5" style={{ fontSize: 17 }}>
+          <div dangerouslySetInnerHTML={{ __html: ortakMakale }} />
+        </div>
+
+        {/* Geri dön butonu */}
+        <Link href="/hizmet" className="btn btn-outline-secondary mt-4">
           &larr; Tüm Hizmetlere Geri Dön
         </Link>
       </div>

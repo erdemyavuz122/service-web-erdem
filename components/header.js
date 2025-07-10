@@ -2,7 +2,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Header() {
+  const [navOpen, setNavOpen] = useState(false);
   const [dropdown, setDropdown] = useState(false);
+
+  const closeNav = () => setNavOpen(false);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -10,25 +13,28 @@ export default function Header() {
         <Link className="navbar-brand fw-bold" href="/">
           Beyaz Eşya Servis
         </Link>
+        {/* Hamburger Button */}
         <button
           className="navbar-toggler"
           type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
           aria-controls="mainNavbar"
-          aria-expanded="false"
+          aria-expanded={navOpen ? "true" : "false"}
           aria-label="Menüyü Aç/Kapat"
+          onClick={() => setNavOpen((v) => !v)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="mainNavbar">
+        <div
+          className={`collapse navbar-collapse${navOpen ? " show" : ""}`}
+          id="mainNavbar"
+        >
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
             <li className="nav-item">
-              <Link className="nav-link" href="/">
+              <Link className="nav-link" href="/" onClick={closeNav}>
                 Ana sayfa
               </Link>
             </li>
-            {/* Sadece Hizmetlerimiz Dropdown */}
+            {/* Hizmetlerimiz Dropdown */}
             <li
               className="nav-item dropdown"
               onMouseEnter={() => setDropdown(true)}
@@ -39,10 +45,10 @@ export default function Header() {
                 href="/hizmet"
                 className="nav-link dropdown-toggle"
                 aria-expanded={dropdown ? "true" : "false"}
-                onClick={() => setDropdown(false)}
                 id="hizmetlerimiz"
                 role="button"
                 tabIndex={0}
+                onClick={closeNav}
               >
                 Hizmetlerimiz
               </Link>
@@ -71,6 +77,7 @@ export default function Header() {
                     <Link
                       className="dropdown-item"
                       href={`/hizmet?service=${encodeURIComponent(servis)}`}
+                      onClick={closeNav}
                     >
                       {servis}
                     </Link>
@@ -79,12 +86,12 @@ export default function Header() {
               </ul>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="/hakkimizda">
+              <Link className="nav-link" href="/hakkimizda" onClick={closeNav}>
                 Hakkımızda
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="/iletisim">
+              <Link className="nav-link" href="/iletisim" onClick={closeNav}>
                 İletişim
               </Link>
             </li>

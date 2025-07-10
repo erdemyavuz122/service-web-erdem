@@ -61,6 +61,37 @@ export default function Hizmet() {
             name="description"
             content="Beyaz eşya, buzdolabı, çamaşır makinesi, bulaşık makinesi, fırın, klima, kombi ve televizyon servislerimiz hakkında detaylı bilgi alın."
           />
+          <meta
+            property="og:title"
+            content="Buzdolabı Servisi | Beyaz Eşya Servis"
+          />
+          <meta
+            property="og:description"
+            content="Buzdolabı tamir, bakım ve onarımında uzman teknik servis."
+          />
+          <meta
+            property="og:image"
+            content="https://siteadresin.com/images/og-image.jpg"
+          />
+          <meta
+            property="og:url"
+            content="https://siteadresin.com/hizmet?service=Buzdolabı"
+          />
+          <meta property="og:type" content="website" />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta
+            name="twitter:title"
+            content="Buzdolabı Servisi | Beyaz Eşya Servis"
+          />
+          <meta
+            name="twitter:description"
+            content="Buzdolabı tamir, bakım ve onarımında uzman teknik servis."
+          />
+          <meta
+            name="twitter:image"
+            content="https://siteadresin.com/images/og-image.jpg"
+          />
         </Head>
         <div className="container py-5">
           <h1 className="mb-4 text-center">Hizmetlerimiz</h1>
@@ -126,6 +157,32 @@ export default function Hizmet() {
     <>
       <Head>
         <title>{hizmetAdi} | Beyaz Eşya Servis</title>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              headline: hizmetAdi, // Hizmetin adı (örn: Buzdolabı)
+              description: hizmetData?.desc || "", // Kısa açıklama
+              author: {
+                "@type": "Organization",
+                name: "Beyaz Eşya Servis",
+              },
+              publisher: {
+                "@type": "Organization",
+                name: "Beyaz Eşya Servis",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://siteadresin.com/images/logo.png", // Kendi logo URL’in
+                },
+              },
+              mainEntityOfPage: `https://siteadresin.com/hizmet?service=${encodeURIComponent(
+                hizmetAdi
+              )}`,
+            }),
+          }}
+        />
         <meta
           name="description"
           content={`${hizmetAdi} için hızlı, güvenilir ve uygun fiyatlı servis hizmetleri! Yetkili servis değiliz, sadece garantisi olmayan cihazlar için bakım ve onarım.`}

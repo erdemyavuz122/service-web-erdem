@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import TelefonButton from "@/components/telefon-button";
 //import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "styles/fonts.css";
+import "@/styles/fonts.css";
 export default function MyApp({ Component, pageProps }) {
   return (
     <Layout>

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-
+import BeyazEsyaMakale from "@/components/BeyazEsyaMakale";
 const sahteYorumlar = [
   {
     isim: "Ahmet K.",
@@ -179,6 +179,9 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+        <div>
+          <BeyazEsyaMakale />
         </div>
       </div>
     </>

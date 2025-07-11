@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
-import ortakMakale from "../lib/makale";
-
+import BeyazEsyaMakale from "@/components/BeyazEsyaMakale";
 // Hizmetler listesi (ikonları Bootstrap Icons ile)
 const hizmetler = [
   {
@@ -69,13 +68,13 @@ export default function Hizmet() {
             property="og:description"
             content="Buzdolabı tamir, bakım ve onarımında uzman teknik servis."
           />
-          <meta
+          {/* <meta
             property="og:image"
             content="https://siteadresin.com/images/og-image.jpg"
-          />
+          /> */}
           <meta
             property="og:url"
-            content="https://siteadresin.com/hizmet?service=Buzdolabı"
+            content="https://beyazesya123.netlify.app/hizmet?service=Buzdolabı"
           />
           <meta property="og:type" content="website" />
 
@@ -87,10 +86,6 @@ export default function Hizmet() {
           <meta
             name="twitter:description"
             content="Buzdolabı tamir, bakım ve onarımında uzman teknik servis."
-          />
-          <meta
-            name="twitter:image"
-            content="https://siteadresin.com/images/og-image.jpg"
           />
         </Head>
         <div className="container py-5">
@@ -169,14 +164,7 @@ export default function Hizmet() {
                 "@type": "Organization",
                 name: "Beyaz Eşya Servis",
               },
-              publisher: {
-                "@type": "Organization",
-                name: "Beyaz Eşya Servis",
-                logo: {
-                  "@type": "ImageObject",
-                  url: "https://siteadresin.com/images/logo.png", // Kendi logo URL’in
-                },
-              },
+
               mainEntityOfPage: `https://siteadresin.com/hizmet?service=${encodeURIComponent(
                 hizmetAdi
               )}`,
@@ -208,6 +196,11 @@ export default function Hizmet() {
           </span>
           . Sadece garantisi olmayan cihazlar için hizmet sunulmaktadır.
         </div>
+        <div className="d-flex align-items-center">
+          <Link href="/hizmet" className="btn btn-outline-secondary mt-3 mb-3">
+            &larr; Tüm Hizmetlere Geri Dön
+          </Link>
+        </div>
 
         {/* Kısa açıklama */}
         <p style={{ fontSize: 20 }}>
@@ -218,13 +211,13 @@ export default function Hizmet() {
 
         {/* Ortak Makale */}
         <div className="mt-5" style={{ fontSize: 17 }}>
-          <div dangerouslySetInnerHTML={{ __html: ortakMakale }} />
+          <BeyazEsyaMakale />
         </div>
 
         {/* Geri dön butonu */}
-        <Link href="/hizmet" className="btn btn-outline-secondary mt-4">
+        {/* <Link href="/hizmet" className="btn btn-outline-secondary mt-4">
           &larr; Tüm Hizmetlere Geri Dön
-        </Link>
+        </Link> */}
       </div>
     </>
   );

@@ -48,3 +48,20 @@ a {
   src: url("/fonts/bootstrap-icons.woff2") format("woff2");
   font-display: swap;
 }
+
+.telefon-buton {
+  max-width: 98vw;
+}
+@media (max-width: 540px) {
+  .telefon-buton {
+    min-width: 90vw !important;
+    height: 46px !important;
+    font-size: 17px !important;
+    border-radius: 23px !important;
+    padding: 0 12px !important;
+  }
+  .telefon-buton .bi-telephone-fill {
+    font-size: 22px !important;
+    margin-right: 10px !important;
+  }
+}

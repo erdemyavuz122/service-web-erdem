@@ -110,12 +110,13 @@ export default function Hizmet() {
                     ></i>
                   </div>
                   <div className="card-body d-flex flex-column px-2 py-3">
-                    <h6
+                    <h3
                       className="card-title fw-bold mb-2 text-primary text-center"
                       style={{ fontSize: "1.05rem" }}
                     >
                       {hizmet.name}
-                    </h6>
+                    </h3>
+
                     <p
                       className="card-text mb-3 text-center small"
                       style={{ minHeight: "36px" }}
@@ -165,7 +166,7 @@ export default function Hizmet() {
                 name: "Beyaz Eşya Servis",
               },
 
-              mainEntityOfPage: `https://siteadresin.com/hizmet?service=${encodeURIComponent(
+              mainEntityOfPage: `https://beyazesya123.netlify.app/hizmet${encodeURIComponent(
                 hizmetAdi
               )}`,
             }),
